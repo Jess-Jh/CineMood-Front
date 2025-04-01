@@ -8,6 +8,8 @@ import { Component, Host, HostListener, signal } from '@angular/core';
 })
 export class DropdownButtonComponent {
 
+  citySelected = signal({ name: 'Selecciona una ciudad', id: 0 });
+
   private _cities = [
     { name: 'New York', id: 1 },
     { name: 'Los Angeles', id: 2 },
@@ -29,7 +31,8 @@ export class DropdownButtonComponent {
     { name: 'Detroit', id: 23 },
     { name: 'Nashville', id: 24 },
     { name: 'Baltimore', id: 25 },
-    { name: 'Oklahoma City', id: 26 },];
+    { name: 'Oklahoma City', id: 26 },
+  ];
 
   get cities() {
     return [...this._cities];
@@ -39,6 +42,11 @@ export class DropdownButtonComponent {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  selectCity(citySelected: { name: string; id: number; }) {
+    this.citySelected.set(citySelected);
+    this.isDropdownOpen = false;
   }
 
   @HostListener('document:click', ['$event'])

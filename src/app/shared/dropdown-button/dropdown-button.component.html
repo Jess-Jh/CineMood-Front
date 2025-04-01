@@ -1,9 +1,12 @@
 <div class="relative mt-2 md:mt-0">
   <button
-    class="text-white bg-gray-600 hover:bg-gray-500 focus-outline-none px-4 py-2 rounded-md inline-flex items-center"
+    class="w-60 truncate text-white bg-gray-600 hover:bg-gray-500 focus-outline-none px-4 py-2 rounded-md items-center flex justify-between"
     (click)="toggleDropdown()"
   >
-    Account
+    <span class="text-sm font-medium truncate">
+      {{ citySelected().name }}
+    </span>
+
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -25,40 +28,20 @@
         ? 'transition ease-out duration-300 transform opacity-100 scale-100'
         : 'transition ease-in duration-75 transform opacity-0 scale-95'
     "
-    class="right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10"
+    class="mt-2 w-60 bg-white rounded-md shadow-lg z-10 overflow-y-auto max-h-[200px]"
   >
     <ul class="py-2">
+      @for (city of cities; track $index) {
       <li>
-        <h2 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-          Armenia
+        <h2
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 truncate"
+          (click)="isDropdownOpen ? selectCity(city) : null"
+          [title]="city.name"
+        >
+          {{ city.name }}
         </h2>
       </li>
-      <li>
-        <h2 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-          Medellin
-        </h2>
-      </li>
-      <li>
-        <h2 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-          Bogotá
-        </h2>
-      </li>
+      }
     </ul>
   </div>
 </div>
-
-<!-- <div class="row mb-3">
-  <div class="col">
-    <label class="form-label">Ciudad: </label>
-
-    <div
-      class="text-white bg-gray-600 hover:bg-gray-500 focus-outline-none px-4 py-2 rounded-md inline-flex items-center"
-    >
-      <select formControlName="country" class="form-control">
-        <option value="">Seleccione Ciudad</option>
-
-
-      </select>
-    </div>
-  </div>
-</div> -->
