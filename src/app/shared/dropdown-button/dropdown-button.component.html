@@ -4,7 +4,7 @@
     (click)="toggleDropdown()"
   >
     <span class="text-sm font-medium truncate">
-      {{ citySelected().name }}
+      {{ selected().label }}
     </span>
 
     <svg
@@ -31,14 +31,14 @@
     class="absolute left-0 w-60 bg-white rounded-md shadow-lg z-10 overflow-y-auto max-h-[200px]"
   >
     <ul class="py-2">
-      @for (city of cities; track $index) {
+      @for (item of listElements(); track $index) {
       <li>
         <h2
           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 truncate"
-          (click)="isDropdownOpen ? selectCity(city) : null"
-          [title]="city.name"
+          (click)="isDropdownOpen ? onSelect(item) : null"
+          [title]="item.label"
         >
-          {{ city.name }}
+          {{ item.label }}
         </h2>
       </li>
       }

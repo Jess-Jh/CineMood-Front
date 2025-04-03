@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Host, HostListener, signal } from '@angular/core';
+import { Component, EventEmitter, Host, HostListener, input, Output, output, signal } from '@angular/core';
+import type { GenericModel } from '../../features/booking/interfaces/generic-model.interface';
 
 @Component({
   selector: 'dropdown-button',
@@ -8,46 +9,21 @@ import { Component, Host, HostListener, signal } from '@angular/core';
 })
 export class DropdownButtonComponent {
 
-  citySelected = signal({ name: 'Selecciona una ciudad', id: 0 });
-
-  private _cities = [
-    { name: 'New York', id: 1 },
-    { name: 'Los Angeles', id: 2 },
-    { name: 'Chicago', id: 3 },
-    { name: 'Houston', id: 4 },
-    { name: 'Phoenix', id: 5 },
-    { name: 'Philadelphia', id: 6 },
-    { name: 'San Antonio', id: 7 },
-    { name: 'San Diego', id: 8 },
-    { name: 'Dallas', id: 9 },
-    { name: 'San Jose', id: 10 },
-    { name: 'Austin', id: 11 },
-    { name: 'Columbus', id: 14 },
-    { name: 'San Francisco', id: 16 },
-    { name: 'Seattle', id: 18 },
-    { name: 'Denver', id: 19 },
-    { name: 'Washington', id: 20 },
-    { name: 'Boston', id: 21 },
-    { name: 'Detroit', id: 23 },
-    { name: 'Nashville', id: 24 },
-    { name: 'Baltimore', id: 25 },
-    { name: 'Oklahoma City', id: 26 },
-  ];
-
-  get cities() {
-    return [...this._cities];
-  }
+  selected = input.required<GenericModel>();
+  listElements = input.required<GenericModel[]>();
+  itemSelected = output<GenericModel>();
 
   isDropdownOpen: boolean = false;
+
+  onSelect(item: GenericModel) {
+    this.itemSelected.emit(item);
+    this.isDropdownOpen = false;
+  }
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  selectCity(citySelected: { name: string; id: number; }) {
-    this.citySelected.set(citySelected);
-    this.isDropdownOpen = false;
-  }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {

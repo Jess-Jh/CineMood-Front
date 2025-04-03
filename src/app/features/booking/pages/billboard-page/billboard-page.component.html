@@ -1,17 +1,27 @@
 <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 max-w-7xl">
   <div
-    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full mb-16"
+    class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full mb-12"
   >
     <!-- Filtro de Ciudad -->
     <div class="flex gap-2 min-w-0">
       <h3 class="text-0xl font-bold whitespace-nowrap">Ciudad:</h3>
-      <dropdown-button class="flex-shrink-0" />
+      <dropdown-button
+        class="flex-shrink-0"
+        [selected]="citySelected()"
+        [listElements]="cities"
+        (itemSelected)="selectCity($event)"
+      />
     </div>
 
     <!-- Filtro de Búsqueda -->
     <div class="flex gap-2 min-w-0">
       <h3 class="text-0xl font-bold whitespace-nowrap">Filtrar por:</h3>
-      <dropdown-button class="flex-shrink-0" />
+      <dropdown-button
+        class="flex-shrink-0"
+        [selected]="typeMovieSelected()"
+        [listElements]="typesMovies"
+        (itemSelected)="selectTypeMovie($event)"
+      />
     </div>
   </div>
 

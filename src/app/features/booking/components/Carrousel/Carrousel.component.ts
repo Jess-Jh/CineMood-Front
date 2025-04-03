@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'carrousel',
   imports: [],
   templateUrl: './Carrousel.component.html',
 })
-export class CarrouselComponent { }
+export class CarrouselComponent {
+
+  movies = input();
+
+
+}
