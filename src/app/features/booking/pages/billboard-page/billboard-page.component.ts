@@ -13,6 +13,10 @@ export class BillboardPageComponent {
   citySelected = signal<GenericModel>({ label: 'Selecciona una ciudad', id: 0 });
   typeMovieSelected = signal<GenericModel>({ label: 'Selecciona un género', id: 0 });
 
+  widthPosterBillboard: number = 480;
+  widthPosterPresale: number = 220;
+  showButtonViewMore: boolean = false;
+
   private _cities = [
     { label: 'New York', id: 1 },
     { label: 'Los Angeles', id: 2 },

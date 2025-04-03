@@ -7,7 +7,9 @@ import { Component, input } from '@angular/core';
 })
 export class CarrouselComponent {
 
-  movies = input();
+  imagePoster = input<string>();
+  widthPoster = input<number>(260);
+  showButtonViewMore = input<boolean>(true);
 
 
 }
